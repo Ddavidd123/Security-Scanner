@@ -1,0 +1,3 @@
+"""
+Detection modul-Prepoznavanje malwera
+"""
