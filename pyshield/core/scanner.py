@@ -36,7 +36,7 @@ def scan_file(file_path):
     }
 
 
-def scan_directory(directory_path):
+def scan_directory(directory_path, allowed_extensions=None, max_file_size_mb=25):
     """
     Skeniranje fajlova u datom direktorijumu 
     """
@@ -57,8 +57,9 @@ def scan_directory(directory_path):
     for root, _, files in os.walk(directory_path):
         for file in files:
             file_path = os.path.join(root, file)
-            result = scan_file(file_path)
-            results.append(result)
+            if should_scan_file(file_path, allowed_extensions, max_file_size_mb):
+                result = scan_file(file_path)
+                results.append(result)
     
     malware_detected = sum(1 for r in results if r["is_malware"])
     errors = sum(1 for r in results if r["status"] == "error")
@@ -75,3 +76,20 @@ def scan_directory(directory_path):
         "results": results,
 
     }
+def should_scan_file(file_path, allowed_extensions, max_file_size_mb):
+    """
+    Proverava da li fajl treba da se skenira na osnovu ekstenzije
+    """
+    _, ext = os.path.splitext(file_path)
+    ext = ext.lower()
+
+    if allowed_extensions is not None and ext not in allowed_extensions:
+        return False
+    
+    file_size_bytes = os.path.getsize(file_path)
+    max_size_bytes = max_file_size_mb * 1024 * 1024
+
+    if file_size_bytes > max_size_bytes:
+        return False
+
+    return True
