@@ -84,3 +84,91 @@
 [2026-03-15 11:49:21] [INFO] Starting scan for file: pyshield\utils\__init__.py
 [2026-03-15 11:49:21] [INFO] No malware detected in file: pyshield\utils\__init__.py
 [2026-03-15 11:49:21] [INFO] Directory scan completed | scanned=10 malware=1 clean=9 errors=0 skipped=9
+[2026-03-15 11:54:33] [INFO] Starting directory scan: pyshield
+[2026-03-15 11:54:33] [INFO] Starting scan for file: pyshield\__init__.py
+[2026-03-15 11:54:33] [WARNING] Malware detected: Test.Malware.Demo in file: pyshield\__init__.py
+[2026-03-15 11:54:33] [INFO] Starting scan for file: pyshield\__main__.py
+[2026-03-15 11:54:33] [INFO] No malware detected in file: pyshield\__main__.py
+[2026-03-15 11:54:33] [INFO] Starting scan for file: pyshield\core\hasher.py
+[2026-03-15 11:54:33] [INFO] No malware detected in file: pyshield\core\hasher.py
+[2026-03-15 11:54:33] [INFO] Starting scan for file: pyshield\core\scanner.py
+[2026-03-15 11:54:33] [INFO] No malware detected in file: pyshield\core\scanner.py
+[2026-03-15 11:54:33] [INFO] Starting scan for file: pyshield\core\__init__.py
+[2026-03-15 11:54:33] [INFO] No malware detected in file: pyshield\core\__init__.py
+[2026-03-15 11:54:33] [INFO] Starting scan for file: pyshield\detection\signatures.py
+[2026-03-15 11:54:33] [INFO] No malware detected in file: pyshield\detection\signatures.py
+[2026-03-15 11:54:33] [INFO] Starting scan for file: pyshield\detection\__init__.py
+[2026-03-15 11:54:33] [INFO] No malware detected in file: pyshield\detection\__init__.py
+[2026-03-15 11:54:33] [INFO] Starting scan for file: pyshield\utils\logger.py
+[2026-03-15 11:54:33] [INFO] No malware detected in file: pyshield\utils\logger.py
+[2026-03-15 11:54:33] [INFO] Starting scan for file: pyshield\utils\__init__.py
+[2026-03-15 11:54:33] [INFO] No malware detected in file: pyshield\utils\__init__.py
+[2026-03-15 11:54:33] [INFO] Directory scan completed | scanned=9 malware=1 clean=8 errors=0 skipped=9
+[2026-03-15 12:03:08] [INFO] Starting scan for file: pyshield\__init__.py
+[2026-03-15 12:03:08] [WARNING] Malware detected: Test.Malware.Demo in file: pyshield\__init__.py
+[2026-03-15 12:03:39] [INFO] Starting directory scan: pyshield
+[2026-03-15 12:03:39] [INFO] Starting scan for file: pyshield\__init__.py
+[2026-03-15 12:03:39] [WARNING] Malware detected: Test.Malware.Demo in file: pyshield\__init__.py
+[2026-03-15 12:03:39] [INFO] Starting scan for file: pyshield\__main__.py
+[2026-03-15 12:03:39] [INFO] No malware detected in file: pyshield\__main__.py
+[2026-03-15 12:03:39] [INFO] Starting scan for file: pyshield\core\hasher.py
+[2026-03-15 12:03:39] [INFO] No malware detected in file: pyshield\core\hasher.py
+[2026-03-15 12:03:39] [INFO] Starting scan for file: pyshield\core\scanner.py
+[2026-03-15 12:03:39] [INFO] No malware detected in file: pyshield\core\scanner.py
+[2026-03-15 12:03:39] [INFO] Starting scan for file: pyshield\core\__init__.py
+[2026-03-15 12:03:39] [INFO] No malware detected in file: pyshield\core\__init__.py
+[2026-03-15 12:03:39] [INFO] Starting scan for file: pyshield\detection\signatures.py
+[2026-03-15 12:03:39] [INFO] No malware detected in file: pyshield\detection\signatures.py
+[2026-03-15 12:03:39] [INFO] Starting scan for file: pyshield\detection\__init__.py
+[2026-03-15 12:03:39] [INFO] No malware detected in file: pyshield\detection\__init__.py
+[2026-03-15 12:03:39] [INFO] Starting scan for file: pyshield\utils\logger.py
+[2026-03-15 12:03:39] [INFO] No malware detected in file: pyshield\utils\logger.py
+[2026-03-15 12:03:39] [INFO] Starting scan for file: pyshield\utils\__init__.py
+[2026-03-15 12:03:39] [INFO] No malware detected in file: pyshield\utils\__init__.py
+[2026-03-15 12:03:39] [INFO] Directory scan completed | scanned=9 malware=1 clean=8 errors=0 skipped=9
+[2026-03-15 12:06:40] [INFO] Starting directory scan: pyshield
+[2026-03-15 12:06:40] [INFO] Starting scan for file: pyshield\__init__.py
+[2026-03-15 12:06:40] [WARNING] Malware detected: Test.Malware.Demo in file: pyshield\__init__.py
+[2026-03-15 12:06:40] [INFO] Starting scan for file: pyshield\__main__.py
+[2026-03-15 12:06:40] [INFO] No malware detected in file: pyshield\__main__.py
+[2026-03-15 12:06:40] [INFO] Starting scan for file: pyshield\core\hasher.py
+[2026-03-15 12:06:40] [INFO] No malware detected in file: pyshield\core\hasher.py
+[2026-03-15 12:06:40] [INFO] Starting scan for file: pyshield\core\scanner.py
+[2026-03-15 12:06:40] [INFO] No malware detected in file: pyshield\core\scanner.py
+[2026-03-15 12:06:40] [INFO] Starting scan for file: pyshield\core\__init__.py
+[2026-03-15 12:06:40] [INFO] No malware detected in file: pyshield\core\__init__.py
+[2026-03-15 12:06:40] [INFO] Starting scan for file: pyshield\detection\signatures.py
+[2026-03-15 12:06:40] [INFO] No malware detected in file: pyshield\detection\signatures.py
+[2026-03-15 12:06:40] [INFO] Starting scan for file: pyshield\detection\__init__.py
+[2026-03-15 12:06:40] [INFO] No malware detected in file: pyshield\detection\__init__.py
+[2026-03-15 12:06:40] [INFO] Starting scan for file: pyshield\utils\logger.py
+[2026-03-15 12:06:40] [INFO] No malware detected in file: pyshield\utils\logger.py
+[2026-03-15 12:06:40] [INFO] Starting scan for file: pyshield\utils\__init__.py
+[2026-03-15 12:06:40] [INFO] No malware detected in file: pyshield\utils\__init__.py
+[2026-03-15 12:06:40] [INFO] Directory scan completed | scanned=9 malware=1 clean=8 errors=0 skipped=9
+[2026-03-15 12:18:34] [INFO] Starting scan for file: pyshield\__init__.py
+[2026-03-15 12:18:34] [WARNING] Malware detected: Test.Malware.Demo in file: pyshield\__init__.py
+[2026-03-15 12:18:45] [INFO] Starting directory scan: pyshield
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\__init__.py
+[2026-03-15 12:18:45] [WARNING] Malware detected: Test.Malware.Demo in file: pyshield\__init__.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\__main__.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\__main__.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\core\hasher.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\core\hasher.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\core\scanner.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\core\scanner.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\core\__init__.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\core\__init__.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\detection\signatures.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\detection\signatures.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\detection\__init__.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\detection\__init__.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\models\scan_result.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\models\scan_result.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\models\__init__.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\models\__init__.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\utils\logger.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\utils\logger.py
+[2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\utils\__init__.py
+[2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\utils\__init__.py
+[2026-03-15 12:18:45] [INFO] Directory scan completed | scanned=11 malware=1 clean=10 errors=0 skipped=11

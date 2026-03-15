@@ -5,6 +5,7 @@ import os
 from pyshield.core.hasher import calculate_sha256
 from pyshield.detection.signatures import is_malware
 from pyshield.utils.logger import logger
+from pyshield.models.scan_result import FileScanResult, DirectoryScanResult
 
 def scan_file(file_path):
     """
@@ -18,14 +19,15 @@ def scan_file(file_path):
     #Ako fajl ne postoji onda ovde vracam informacije 
     if file_hash is None:
         logger.error(f"File not found: {file_path}")
-        return {
-            "file_path": file_path,
-            "status": "error",
-            "message": "File not found",
-            "hash": None,
-            "is_malware": False,
-            "malware_name": None,
-        }
+
+        return FileScanResult(
+            file_path=file_path,
+            status="error",
+            message="File not found",
+            hash=None,
+            is_malware=False,
+            malware_name=None,
+        ).to_dict()
 
     #u suportnom ako postoji malware
     detected, malware_name = is_malware(file_hash)
@@ -34,14 +36,14 @@ def scan_file(file_path):
         logger.warning(f"Malware detected: {malware_name} in file: {file_path}")
     else:
         logger.info(f"No malware detected in file: {file_path}")
-    return {
-        "file_path": file_path,
-        "status": "scanned",
-        "message": "File scanned successfully",
-        "hash": file_hash,
-        "is_malware": detected,
-        "malware_name": malware_name,
-    }
+    return FileScanResult(
+        file_path=file_path,
+        status="scanned",
+        message="File scanned successfully",
+        hash=file_hash,
+        is_malware=detected,
+        malware_name=malware_name,
+    ).to_dict()
 
 
 def scan_directory(directory_path, allowed_extensions=None, max_file_size_mb=25):
@@ -53,17 +55,17 @@ def scan_directory(directory_path, allowed_extensions=None, max_file_size_mb=25)
 
     if not os.path.isdir(directory_path):
         logger.error(f"Directory not found: {directory_path}")
-        return {
-            "status": "error",
-            "message": "Directory not found",
-            "directory_path": directory_path,
-            "total_files": 0,
-            "skipped_files": 0,
-            "malware_detected": 0,
-            "clean_files": 0,
-            "errors": 1,
-            "results": [],
-        }
+        return DirectoryScanResult(
+            status="error",
+            message="Directory not found",
+            directory_path=directory_path,
+            total_files=0,
+            malware_detected=0,
+            skipped_files=0,
+            clean_files=0,
+            errors=1,
+            results=[],
+        ).to_dict()
     results = []
     skipped = [] # one koje smo preskocili 
     # root koristim ignorisem _ - for root, _, files
@@ -86,18 +88,17 @@ def scan_directory(directory_path, allowed_extensions=None, max_file_size_mb=25)
     f"errors={errors} skipped={len(skipped)}"
 )
 
-    return{
-        "status": "completed",
-        "message": "Directory scan completed",
-        "directory_path": directory_path,
-        "total_files": len(results),
-        "malware_detected": malware_detected,
-        "skipped_files": len(skipped),
-        "clean_files": clean_files,
-        "errors": errors,
-        "results": results,
-
-    }
+    return DirectoryScanResult(
+        status="completed",
+        message="Directory scan completed",
+        directory_path=directory_path,
+        total_files=len(results),
+        malware_detected=malware_detected,
+        skipped_files=len(skipped),
+        clean_files=clean_files,
+        errors=errors,
+        results=results,
+    ).to_dict()
 def should_scan_file(file_path, allowed_extensions, max_file_size_mb):
     """
     Proverava da li fajl treba da se skenira na osnovu ekstenzije

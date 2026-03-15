@@ -1,9 +1,14 @@
 import argparse
 from pyshield.core.scanner import scan_file, scan_directory
+import json
+import sys
 
 def main():
     parser = argparse.ArgumentParser(description='PyShield Antivirus CLI')
+    
     subparsers = parser.add_subparsers(dest="command", required=True)
+
+    parser.add_argument("--json", action="store_true", help="Print result as JSON")
 
     file_parser = subparsers.add_parser('scan-file', help='Scan a single file for malware')
     file_parser.add_argument('path', help='Path to the file to scan')
@@ -23,7 +28,15 @@ def main():
 
     if args.command == "scan-file":
         result = scan_file(args.path)
-        print_file_report(result)
+        
+
+        if args.json:
+            print(json.dumps(result, indent=2,ensure_ascii=False))
+        else:
+            print_file_report(result)
+
+        sys.exit(get_exit_code(result))
+
     elif args.command == "scan-dir":
         extensions = set(args.ext) if args.ext else None
         result = scan_directory(
@@ -31,7 +44,12 @@ def main():
             allowed_extensions=extensions,
             max_file_size_mb=args.max_size_mb,
         )
-        print_directory_report(result)
+        if args.json:
+            print(json.dumps(result, indent=2, ensure_ascii=False))
+        else:
+            print_directory_report(result)
+
+        sys.exit(get_exit_code(result))
 
 def print_file_report(result):
     print("\n== Pyshield File Scan Report ==")
@@ -56,5 +74,26 @@ def print_directory_report(result):
     print(f"Skipped Files: {result['skipped_files']}")
     print(f"Errors: {result['errors']}")
 
+    malware_items = [r for r in result["results"] if r["is_malware"]]
+
+    if malware_items:
+        print("\nDetected threats:")
+        for item in malware_items:
+            print(f"- {item['file_path']} -> {item['malware_name']}")
+    else:
+        print("\nDetected threats: none")
+
+def get_exit_code(result):
+    if result.get("status") == "error":
+        return 2
+
+    if result.get("is_malware") is True:
+        return 1
+
+    if result.get("malware_detected", 0) > 0:
+        return 1
+
+    return 0
+    
 if __name__ == "__main__":
     main()
