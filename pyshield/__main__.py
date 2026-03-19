@@ -15,10 +15,21 @@ def main():
     file_parser = subparsers.add_parser('scan-file', help='Scan a single file for malware')
     file_parser.add_argument('path', help='Path to the file to scan')
 
+    file_parser.add_argument(
+        "--quarantine",
+        action="store_true",
+        help="Move detected malware to quarantine",
+    )
+
     dir_parser = subparsers.add_parser('scan-dir', help='Scan a directory for malware')
     dir_parser.add_argument('path', help='Path to the directory to scan')
     dir_parser.add_argument("--max-size-mb", type=int, default=25, help="Max file size to scan")
 
+    dir_parser.add_argument(
+        "--quarantine",
+        action="store_true",
+        help="Move detected malware to quarantine",
+    )
 
 
     dir_parser.add_argument(
@@ -46,7 +57,7 @@ def main():
 
     if args.command == "scan-file":
         result = scan_file(args.path)
-
+        result = apply_quarantine_if_needed(result, args.quarantine)
         if args.json:
             print(json.dumps(result, indent=2, ensure_ascii=False))
         else:
@@ -58,9 +69,11 @@ def main():
         extensions = set(args.ext) if args.ext else None
         result = scan_directory(
             args.path,
+
             allowed_extensions=extensions,
             max_file_size_mb=args.max_size_mb,
         )
+        result = apply_quarantine_if_needed(result, args.quarantine)
         if args.json:
             print(json.dumps(result, indent=2, ensure_ascii=False))
         else:
@@ -123,6 +136,11 @@ def print_directory_report(result):
     print(f"Skipped Files: {result['skipped_files']}")
     print(f"Errors: {result['errors']}")
 
+    if "quarantined_count" in result:
+        print(f"Quarantined: {result['quarantined_count']}")
+    if "quarantine_errors" in result:
+        print(f"Quarantine Errors: {result['quarantine_errors']}")
+
     malware_items = [r for r in result["results"] if r["is_malware"]]
 
     if malware_items:
@@ -144,7 +162,35 @@ def get_exit_code(result):
 
     return 0
 
+def apply_quarantine_if_needed(result, use_quarantine):
+    if not use_quarantine:
+        return result
 
+    q = QuarantineManager()
+
+    if result.get("is_malware") is True and result.get("status") == "scanned":
+        quarantine_result = q.quarantine_file(result["file_path"], result["malware_name"])
+        result["quarantine"] = quarantine_result
+        return result
+
+    if "results" in result:
+        quarantined_count = 0
+        quarantine_errors = 0
+
+        for item in result["results"]:
+            if item.get("is_malware") is True and item.get("status") == "scanned":
+                q_result = q.quarantine_file(item["file_path"], item["malware_name"])
+                item["quarantine"] = q_result
+
+                if q_result.get("status") == "ok":
+                    quarantined_count += 1
+                else:
+                    quarantine_errors += 1
+
+        result["quarantined_count"] = quarantined_count
+        result["quarantine_errors"] = quarantine_errors
+
+    return result
     
 if __name__ == "__main__":
     main()
