@@ -172,3 +172,7 @@
 [2026-03-15 12:18:45] [INFO] Starting scan for file: pyshield\utils\__init__.py
 [2026-03-15 12:18:45] [INFO] No malware detected in file: pyshield\utils\__init__.py
 [2026-03-15 12:18:45] [INFO] Directory scan completed | scanned=11 malware=1 clean=10 errors=0 skipped=11
+[2026-03-17 11:49:48] [INFO] Starting scan for file: sample.txt
+[2026-03-17 11:49:48] [INFO] No malware detected in file: sample.txt
+[2026-03-17 11:50:43] [INFO] Starting scan for file: pyshield\__init__.py
+[2026-03-17 11:50:43] [WARNING] Malware detected: Test.Malware.Demo in file: pyshield\__init__.py

@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "295eb898-1ce7-4512-b549-f7caf062540a",
+    "original_path": "pyshield\\__init__.py",
+    "quarantined_path": "quarantine\\295eb898-1ce7-4512-b549-f7caf062540a___init__.py",
+    "malware_name": "Test.Malware.Demo",
+    "quarantine_time": "2026-03-17T10:50:43.961915"
+  }
+]
